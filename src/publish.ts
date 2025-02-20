@@ -1,31 +1,40 @@
-import { Ipfs, type Op } from "@graphprotocol/grc-20";
+import { Ipfs, Triple, type Op } from "@graphprotocol/grc-20";
 import { wallet } from "../src/wallet";
 
-// const spaceId = "StmAdnKcuptihSsYUobJfi"; // Public Records Space ID
-//const Ipfs = "bafkreifqfyucvnoylavz7g77c5g5ebcdw2qtgv3yjmwisfahaywr6l554i"; // Your actual IPFS hash
+const SPACE_ID = "StmAdnKcuptihSsYUobJfi"; // ✅ Your Public Records Space ID
+const DESCRIPTION_ID = "LA1DqP5v6QAdsgLPXGF3YA"; // ✅ Correct description entity ID
+const DESCRIPTION_TEXT =
+  "A decentralized registry for public property records.";
 
-type PublishOptions = {
-  spaceId: string;
-  editName: string;
-  author: string;
-  ops: Op[];
-};
+// ✅ Step 1: Define the operation to add a description
+const descriptionOp = Triple.make({
+  attributeId: DESCRIPTION_ID,
+  entityId: "W1ApQCd9TQtA3dPExNg9xE",
+  value: {
+    type: "TEXT",
+    value: DESCRIPTION_TEXT,
+  },
+});
 
-export async function publish(options: PublishOptions) {
-  const cid = await Ipfs.publishEdit({
-    name: options.editName,
-    author: options.author,
-    ops: options.ops,
-  });
+// 🔥 Use manually pinned IPFS CID (Replace with your actual CID)
+const ipfsCID = "bafkreibsnn6tbdp52gmhrizru3b2xonlleroki3ob4mftzojwmhqtns4aq"; // Correct format"
+const ipfsUrl =
+  "ipfs://bafkreibsnn6tbdp52gmhrizru3b2xonlleroki3ob4mftzojwmhqtns4aq"; // ✅ Correct format
 
-  // ✅ Step 2: Request transaction calldata from Geogenesis API
+// ✅ Step 2: Publish the edit on Geogenesis
+export async function publish() {
+  console.log("🚀 Publishing description update...");
+
+  console.log(`🔗 Using manually specified IPFS hash: ${ipfsUrl}`);
+
+  // ✅ Step 3: Request transaction calldata from Geogenesis API
   const result = await fetch(
-    `https://api-testnet.grc-20.thegraph.com/space/${options.spaceId}/edit/calldata`,
+    `https://api-testnet.grc-20.thegraph.com/space/${SPACE_ID}/edit/calldata`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        cid: cid, // 🔥 Attach the correctly formatted IPFS hash
+        cid: ipfsUrl, // 🔥 Attach manually pinned CID
         network: "TESTNET",
       }),
     }
@@ -38,7 +47,7 @@ export async function publish(options: PublishOptions) {
   const { to, data } = await result.json();
   console.log(`📡 Sending transaction to ${to}...`);
 
-  // ✅ Step 3: Publish to the blockchain (Send transaction)
+  // ✅ Step 4: Send the transaction on-chain
   const txHash = await wallet.sendTransaction({
     to: to,
     value: 0n,
@@ -47,20 +56,9 @@ export async function publish(options: PublishOptions) {
 
   console.log(`✅ Successfully published on-chain! Tx Hash: ${txHash}`);
   console.log(
-    `🔗 Check the transaction here: https://blockscout.com/gnosis/chiado/tx/${txHash}`
+    `🔗 Check the transaction here: https://explorer-geo-test-zc16z3tcvf.t.conduit.xyz/tx/${txHash}`
   );
-
-  return await wallet.sendTransaction({
-    to: to,
-    value: 0n,
-    data: data,
-  });
 }
 
-// // 🚀 Execute the function to publish the update
-// publish({
-//   spaceId: spaceId,
-//   editName: "Public Records Description Update",
-//   author: wallet.account.address,
-//   ops: [], // Provide ops here if needed
-// });
+// 🚀 Run the function to publish the update
+publish();

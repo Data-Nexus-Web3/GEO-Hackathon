@@ -5,7 +5,7 @@
       "name": "clone-space",
       "dependencies": {
         "@biomejs/biome": "^1.9.4",
-        "@graphprotocol/grc-20": "^0.5.5",
+        "@graphprotocol/grc-20": "^0.6.0",
         "dotenv": "^16.4.7",
         "ethers": "^6.13.5",
         "viem": "^2.23.2",
@@ -183,7 +183,7 @@
 
     "@ethersproject/wordlists": ["@ethersproject/wordlists@5.7.0", "", { "dependencies": { "@ethersproject/bytes": "^5.7.0", "@ethersproject/hash": "^5.7.0", "@ethersproject/logger": "^5.7.0", "@ethersproject/properties": "^5.7.0", "@ethersproject/strings": "^5.7.0" } }, "sha512-S2TFNJNfHWVHNE6cNDjbVlZ6MgE17MIxMbMg2zv3wn+3XSJGosL1m9ZVv3GXCf/2ymSsQ+hRI5IzoMJTG6aoVA=="],
 
-    "@graphprotocol/grc-20": ["@graphprotocol/grc-20@0.5.5", "", { "dependencies": { "@biomejs/biome": "^1.9.4", "@bufbuild/protobuf": "^1.9.0", "@changesets/cli": "^2.27.12", "@ethersproject/abi": "^5.6.4", "@ethersproject/providers": "^5.6.8", "@types/uuid": "^9.0.8", "effect": "^3.12.11", "ethers": "^5.7.2", "position-strings": "^2.0.1", "uuid": "^9.0.0", "viem": "^1.16.0", "vite": "^5.2.11", "vitest": "^1.6.0" } }, "sha512-IH8+T0HxYluxE3FpryNQWSygfBcYsNngIQq+/mZc3eVXyG0RdbXQvP/YQpW2U2OBhMCXAVuB0rd2Gxcajb37mA=="],
+    "@graphprotocol/grc-20": ["@graphprotocol/grc-20@0.6.0", "", { "dependencies": { "@biomejs/biome": "^1.9.4", "@bufbuild/protobuf": "^1.9.0", "@changesets/cli": "^2.27.12", "@ethersproject/abi": "^5.6.4", "@ethersproject/providers": "^5.6.8", "@types/uuid": "^9.0.8", "effect": "^3.12.11", "ethers": "^5.7.2", "position-strings": "^2.0.1", "uuid": "^9.0.0", "viem": "^1.16.0", "vite": "^5.2.11", "vitest": "^1.6.0" } }, "sha512-N+bjPoB7TjNrJQQIOJ0Snveslq42uY7mO4sb9zy3XCB0yJlhy1TuBuQ+AXzwLi1LBEd62yNKSbz6dV9ghJa5CQ=="],
 
     "@jest/schemas": ["@jest/schemas@29.6.3", "", { "dependencies": { "@sinclair/typebox": "^0.27.8" } }, "sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA=="],
 
@@ -636,10 +636,6 @@
     "viem/ws": ["ws@8.18.0", "", { "peerDependencies": { "bufferutil": "^4.0.1", "utf-8-validate": ">=5.0.2" }, "optionalPeers": ["bufferutil", "utf-8-validate"] }, "sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw=="],
 
     "@graphprotocol/grc-20/viem/@adraffy/ens-normalize": ["@adraffy/ens-normalize@1.10.0", "", {}, "sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q=="],
-
-    "@graphprotocol/grc-20/viem/@noble/curves": ["@noble/curves@1.2.0", "", { "dependencies": { "@noble/hashes": "1.3.2" } }, "sha512-oYclrNgRaM9SsBUBVbb8M6DTV7ZHRTKugureoYEncY5c65HOmRzvSiTE3y5CYaPYJA/GVkrhXEoF0M3Ya9PMnw=="],
-
-    "@graphprotocol/grc-20/viem/@noble/hashes": ["@noble/hashes@1.3.2", "", {}, "sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ=="],
 
     "@graphprotocol/grc-20/viem/@scure/bip32": ["@scure/bip32@1.3.2", "", { "dependencies": { "@noble/curves": "~1.2.0", "@noble/hashes": "~1.3.2", "@scure/base": "~1.1.2" } }, "sha512-N1ZhksgwD3OBlwTv3R6KFEcPojl/W4ElJOeCZdi+vuI5QmTFwLq3OFf2zd2ROpKvxFdgZ6hUpb0dx9bVNEwYCA=="],
 
