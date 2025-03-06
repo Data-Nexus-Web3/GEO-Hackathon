@@ -1,7 +1,7 @@
 import { Ipfs, Triple, type Op } from "@graphprotocol/grc-20";
 import { wallet } from "../src/wallet";
 
-const SPACE_ID = "StmAdnKcuptihSsYUobJfi"; // ✅ Your Public Records Space ID
+const SPACE_ID = "StmAdnKcuptihSsYUobJfi"; // ✅ Public Records Space ID
 const DESCRIPTION_ID = "LA1DqP5v6QAdsgLPXGF3YA"; // ✅ Correct description entity ID
 const DESCRIPTION_TEXT =
   "A decentralized registry for public property records.";
@@ -9,23 +9,19 @@ const DESCRIPTION_TEXT =
 // ✅ Step 1: Define the operation to add a description
 const descriptionOp = Triple.make({
   attributeId: DESCRIPTION_ID,
-  entityId: "W1ApQCd9TQtA3dPExNg9xE",
+  entityId: "W1ApQCd9TQtA3dPExNg9xE", // Ensure this is the correct entity ID
   value: {
     type: "TEXT",
-    value: DESCRIPTION_TEXT,
+    value: "A decentralized registry for public property records.",
   },
 });
 
-// 🔥 Use manually pinned IPFS CID (Replace with your actual CID)
-const ipfsCID = "bafkreibsnn6tbdp52gmhrizru3b2xonlleroki3ob4mftzojwmhqtns4aq"; // Correct format"
-const ipfsUrl =
-  "ipfs://bafkreibsnn6tbdp52gmhrizru3b2xonlleroki3ob4mftzojwmhqtns4aq"; // ✅ Correct format
-
-// ✅ Step 2: Publish the edit on Geogenesis
 export async function publish() {
-  console.log("🚀 Publishing description update...");
-
-  console.log(`🔗 Using manually specified IPFS hash: ${ipfsUrl}`);
+  const cid = await Ipfs.publishEdit({
+    name: "Public Records Description",
+    author: wallet.account.address,
+    ops: [descriptionOp], // ✅ Pass the description operation
+  });
 
   // ✅ Step 3: Request transaction calldata from Geogenesis API
   const result = await fetch(
@@ -34,7 +30,7 @@ export async function publish() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        cid: ipfsUrl, // 🔥 Attach manually pinned CID
+        cid: cid, // 🔥 Attach dynamically generated IPFS CID
         network: "TESTNET",
       }),
     }
@@ -59,6 +55,3 @@ export async function publish() {
     `🔗 Check the transaction here: https://explorer-geo-test-zc16z3tcvf.t.conduit.xyz/tx/${txHash}`
   );
 }
-
-// 🚀 Run the function to publish the update
-publish();
